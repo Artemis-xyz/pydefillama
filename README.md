@@ -5,7 +5,7 @@
 
 An unofficial DeFiLlama wrapper built for data science workflows.
 
-For detailed instructions on the endpoints, refer to the [API docs](https://defillama.com/docs/api)
+For detailed instructions on the endpoints, refer to the [API docs](https://defillama.com/docs/api).
 
 ## Installation
 
@@ -59,7 +59,7 @@ If you would like to use this API for other purposes, please consider forking th
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgements
 
