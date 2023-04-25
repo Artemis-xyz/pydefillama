@@ -1,1 +1,0 @@
-name='defillama-python-client'
