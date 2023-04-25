@@ -10,7 +10,7 @@ requirements = requirements_text.split()
 
 setuptools.setup(
     name="pydefillama",
-    version="1.0.2",
+    version="1.0.3",
     description="Python Wrapper for DefiLlama endpoints",
     url="https://github.com/Artemis-xyz/DefiLlama-Python-Client",
     author="Artemis.xyz",
