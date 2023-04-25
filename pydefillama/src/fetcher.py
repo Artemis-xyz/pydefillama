@@ -113,6 +113,7 @@ def fetch_protocol_fees(protocol_slug: str, fee_type: FEE_TYPE) -> pd.DataFrame:
     df = pd.DataFrame(all_fees, columns=["date", protocol_slug])
     df = df.fillna(np.nan).replace([np.nan], [None])
     df = _convert_df_column_to_date(df, "date", unit="s")
+    df.columns = ["date", fee_type.value]
     return df
 
 
