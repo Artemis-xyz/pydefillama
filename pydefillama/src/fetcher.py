@@ -106,7 +106,7 @@ def fetch_chain_names_that_list_fees() -> list[str]:
     return chain_names
 
 
-def fetch_fees_for_protocol(protocol_slug: str, fee_type: FEE_TYPE) -> pd.DataFrame:
+def fetch_protocol_fees(protocol_slug: str, fee_type: FEE_TYPE) -> pd.DataFrame:
     url = f"https://api.llama.fi/summary/fees/{protocol_slug}?dataType={fee_type.value}"
     r = requests.get(url)
     all_fees = r.json()["totalDataChart"]
@@ -116,8 +116,8 @@ def fetch_fees_for_protocol(protocol_slug: str, fee_type: FEE_TYPE) -> pd.DataFr
     return df
 
 
-def fetch_fees_for_chain(chain_name: str, fee_type: FEE_TYPE) -> pd.DataFrame:
-    return fetch_fees_for_protocol(chain_name, fee_type)
+def fetch_chain_fees(chain_name: str, fee_type: FEE_TYPE) -> pd.DataFrame:
+    return fetch_protocol_fees(chain_name, fee_type)
 
 
 def fetch_protocol_ids_that_list_dex_volumes():
@@ -142,7 +142,7 @@ def fetch_chain_names_that_list_dex_volumes() -> list[str]:
     return assets
 
 
-def fetch_dex_volumes_for_protocol(protocol_slug: str) -> pd.DataFrame:
+def fetch_protocol_dex_volumes(protocol_slug: str) -> pd.DataFrame:
     url = f"https://api.llama.fi/summary/dexs/{protocol_slug}?excludeTotalDataChart=false&excludeTotalDataChartBreakdown=true&dataType=dailyVolume"
     r = requests.get(url)
     results = r.json()["totalDataChart"]
@@ -154,5 +154,5 @@ def fetch_dex_volumes_for_protocol(protocol_slug: str) -> pd.DataFrame:
     return df
 
 
-def fetch_dex_volumes_for_chain(chain_name) -> pd.DataFrame:
-    return fetch_dex_volumes_for_protocol(chain_name)
+def fetch_chain_dex_volumes(chain_name) -> pd.DataFrame:
+    return fetch_protocol_dex_volumes(chain_name)
