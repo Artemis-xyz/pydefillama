@@ -37,7 +37,7 @@ Full list of supported functions [here](https://github.com/Artemis-xyz/pydefilla
  python -m unittest discover
 ```
 
-### Developing Locally
+## Developing Locally
 
 ```
 # install module without pip
@@ -45,6 +45,22 @@ python setup.py develop
 
 # run shell to play around
 ipython
+
+# import and use module in python shell
 import pydefillama as llama
 ...
 ```
+
+## Contributing
+
+If you would like to contribute to this project, please open an issue or submit a PR.
+While we are open to all contributions, we would like to keep this project focused on data science workflows, which is why functions often return a pandas dataframe.
+If you would like to use this API for other purposes, please consider forking this repo.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+## Acknowledgements
+
+We are thankful for the DefiLlama team for providing this open API. If you would like to support them, consider donating to them [here](https://defillama.com/donate).
