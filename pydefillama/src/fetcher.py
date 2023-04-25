@@ -50,6 +50,7 @@ def fetch_protocol_tvl(protocol_slug: str) -> pd.DataFrame:
     r = requests.get(url)
     data = r.json()
     df = pd.DataFrame(data["tvl"])
+    df.columns = ["date", "tvl"]
     df = _convert_df_column_to_date(df, unit="s")
     return df
 
@@ -76,6 +77,7 @@ def fetch_chain_tvl(chain_name: str):
     r = requests.get(url)
     data = r.json()
     df = pd.DataFrame(data)
+    df.columns = ["date", "tvl"]
     df = _convert_df_column_to_date(df, unit="s")
     return df
 
