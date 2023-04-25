@@ -63,4 +63,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgements
 
-We are thankful for the DefiLlama team for providing this open API. If you would like to support them, consider donating to them [here](https://defillama.com/donate).
+We are thankful for the DefiLlama team for providing this open API. If you would like to support them, consider donating to them [here](https://defillama.com/donations).
