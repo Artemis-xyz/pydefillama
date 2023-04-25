@@ -28,3 +28,8 @@ llama.fetch_chain_tvl(chains["name"])
 ```
 
 Full list of supported functions [here](https://github.com/Artemis-xyz/pydefillama/blob/main/pydefillama/src/fetcher.py).
+
+## Run Tests
+```
+ python -m unittest discover
+```
