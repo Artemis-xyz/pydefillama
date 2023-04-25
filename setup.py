@@ -16,7 +16,7 @@ setuptools.setup(
     author="Artemis.xyz",
     author_email="team@artemis.xyz",
     license="MIT",
-    packages=setuptools.find_packages(),
+    packages=setuptools.find_packages(exclude="tests"),
     zip_safe=False,
     long_description_content_type="text/markdown",
     long_description=long_description,
