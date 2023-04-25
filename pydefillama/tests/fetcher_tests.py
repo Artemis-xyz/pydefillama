@@ -15,3 +15,6 @@ class Test(unittest.TestCase):
         uniswap_v3_entry = uniswap_v3_entry[0]
         self.assert_(uniswap_v3_entry["symbol"] == "UNI")
         self.assert_(uniswap_v3_entry["parentProtocol"] == "parent#uniswap")
+
+
+# TODO: Add more tests
