@@ -48,3 +48,17 @@ class Test(unittest.TestCase):
             self.assertIsInstance(fees, pd.DataFrame)
             self.assertTrue(fees.columns[0] == "date")
             self.assertTrue(fees.columns[1] == fee_type.value)
+
+    def test_fetch_chain_fees(self):
+        chain_names = llama.fetch_chain_names_that_list_fees()
+        self.assertIsInstance(chain_names, list)
+        self.assertTrue(len(chain_names) > 0)
+
+        chains = llama.fetch_all_chains()
+        chains = list(filter(lambda chain: chain["name"] in chain_names, chains))
+
+        for fee_type in FEE_TYPE:
+            fees = llama.fetch_chain_fees(chains[0]["name"], fee_type)
+            self.assertIsInstance(fees, pd.DataFrame)
+            self.assertTrue(fees.columns[0] == "date")
+            self.assertTrue(fees.columns[1] == fee_type.value)

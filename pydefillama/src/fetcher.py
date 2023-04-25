@@ -99,7 +99,7 @@ def fetch_chain_names_that_list_fees() -> list[str]:
     r = requests.get(url)
     # protocols field is a lie - includes chains and protocols
     chain_names = [
-        protocol["defillamaId"]
+        protocol["name"]
         for protocol in r.json()["protocols"]
         if protocol["protocolType"] == "chain"
     ]
