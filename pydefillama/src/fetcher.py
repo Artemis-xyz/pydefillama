@@ -82,7 +82,7 @@ def fetch_chain_tvl(chain_name: str):
     return df
 
 
-def fetch_dl_protocol_ids_that_list_fees() -> list[str]:
+def fetch_protocol_ids_that_list_fees() -> list[str]:
     url = "https://api.llama.fi/overview/fees?excludeTotalDataChartBreakdown=true&excludeTotalDataChart=true"
     r = requests.get(url)
     # protocols field is a lie - includes chains and protocols
@@ -94,7 +94,7 @@ def fetch_dl_protocol_ids_that_list_fees() -> list[str]:
     return protocol_ids
 
 
-def fetch_dl_chain_names_that_list_fees() -> list[str]:
+def fetch_chain_names_that_list_fees() -> list[str]:
     url = "https://api.llama.fi/overview/fees?excludeTotalDataChartBreakdown=true&excludeTotalDataChart=true"
     r = requests.get(url)
     # protocols field is a lie - includes chains and protocols
