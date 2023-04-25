@@ -1,1 +1,1 @@
-# pyllama: a DefiLlama Python client
+# pydefillama: a DefiLlama Python client
