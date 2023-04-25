@@ -3,6 +3,7 @@ import unittest
 import pandas as pd
 
 import pydefillama as llama
+from pydefillama.src.utils import FEE_TYPE
 
 
 class Test(unittest.TestCase):
@@ -32,5 +33,18 @@ class Test(unittest.TestCase):
         self.assertTrue(df.columns[1] == "tvl")
         self.assertTrue(df.iloc[-1]["tvl"] > 0)
 
+    def test_fetch_protocol_fees(self):
+        protocol_ids = llama.fetch_protocol_ids_that_list_fees()
+        self.assertIsInstance(protocol_ids, list)
+        self.assertTrue(len(protocol_ids) > 0)
 
-# TODO: Add more tests
+        protocols = llama.fetch_all_protocols()
+        protocols = list(
+            filter(lambda protocol: protocol["defillama_id"] in protocol_ids, protocols)
+        )
+
+        for fee_type in FEE_TYPE:
+            fees = llama.fetch_protocol_fees(protocols[0]["slug"], fee_type)
+            self.assertIsInstance(fees, pd.DataFrame)
+            self.assertTrue(fees.columns[0] == "date")
+            self.assertTrue(fees.columns[1] == fee_type.value)

@@ -156,4 +156,12 @@ def fetch_protocol_dex_volumes(protocol_slug: str) -> pd.DataFrame:
 
 
 def fetch_chain_dex_volumes(chain_name) -> pd.DataFrame:
-    return fetch_protocol_dex_volumes(chain_name)
+    url = f"https://api.llama.fi/overview/dexs/{chain_name}?excludeTotalDataChart=false&excludeTotalDataChartBreakdown=true&dataType=dailyVolume"
+    r = requests.get(url)
+    results = r.json()["totalDataChart"]
+    df = pd.DataFrame(results)
+    df.columns = ["date", "volume"]
+    df = df.set_index("date")
+    df.index = pd.to_datetime(df.index, unit="s").date
+    df = df.fillna(np.nan).replace([np.nan], [None]).reset_index()
+    return df
