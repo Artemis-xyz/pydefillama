@@ -57,6 +57,14 @@ If you would like to contribute to this project, please open an issue or submit 
 While we are open to all contributions, we would like to keep this project focused on data science workflows, which is why functions often return a pandas dataframe.
 If you would like to use this API for other purposes, please consider forking this repo.
 
+## Maintainers
+
+To push to PyPi, follow the following steps:
+
+- Update version in `setup.py`
+- Push to main branch
+- Run `./updatepip.sh`
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
