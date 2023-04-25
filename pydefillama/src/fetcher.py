@@ -149,9 +149,8 @@ def fetch_protocol_dex_volumes(protocol_slug: str) -> pd.DataFrame:
     results = r.json()["totalDataChart"]
     df = pd.DataFrame(results)
     df.columns = ["date", "volume"]
-    df = df.set_index("date")
-    df.index = pd.to_datetime(df.index, unit="s").date
-    df = df.fillna(np.nan).replace([np.nan], [None]).reset_index()
+    df = _convert_df_column_to_date(df, unit="s")
+    df = df.fillna(np.nan).replace([np.nan], [None])
     return df
 
 
@@ -161,7 +160,6 @@ def fetch_chain_dex_volumes(chain_name) -> pd.DataFrame:
     results = r.json()["totalDataChart"]
     df = pd.DataFrame(results)
     df.columns = ["date", "volume"]
-    df = df.set_index("date")
-    df.index = pd.to_datetime(df.index, unit="s").date
-    df = df.fillna(np.nan).replace([np.nan], [None]).reset_index()
+    df = _convert_df_column_to_date(df, unit="s")
+    df = df.fillna(np.nan).replace([np.nan], [None])
     return df

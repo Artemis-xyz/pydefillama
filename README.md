@@ -34,7 +34,7 @@ Full list of supported functions [here](https://github.com/Artemis-xyz/pydefilla
 ## Run Tests
 
 ```
- python -m unittest discover
+python -m unittest discover
 ```
 
 ## Developing Locally

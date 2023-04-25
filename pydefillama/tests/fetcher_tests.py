@@ -62,3 +62,31 @@ class Test(unittest.TestCase):
             self.assertIsInstance(fees, pd.DataFrame)
             self.assertTrue(fees.columns[0] == "date")
             self.assertTrue(fees.columns[1] == fee_type.value)
+
+    def test_fetch_protocol_dex_volumes(self):
+        protocol_ids = llama.fetch_protocol_ids_that_list_dex_volumes()
+        self.assertIsInstance(protocol_ids, list)
+        self.assertTrue(len(protocol_ids) > 0)
+
+        protocols = llama.fetch_all_protocols()
+        protocols = list(
+            filter(lambda protocol: protocol["defillama_id"] in protocol_ids, protocols)
+        )
+
+        volumes = llama.fetch_protocol_dex_volumes(protocols[0]["slug"])
+        self.assertIsInstance(volumes, pd.DataFrame)
+        self.assertTrue(volumes.columns[0] == "date")
+        self.assertTrue(volumes.columns[1] == "volume")
+
+    def test_fetch_chain_dex_volumes(self):
+        chain_names = llama.fetch_chain_names_that_list_dex_volumes()
+        self.assertIsInstance(chain_names, list)
+        self.assertTrue(len(chain_names) > 0)
+
+        chains = llama.fetch_all_chains()
+        chains = list(filter(lambda chain: chain["name"] in chain_names, chains))
+
+        volumes = llama.fetch_chain_dex_volumes(chains[0]["name"])
+        self.assertIsInstance(volumes, pd.DataFrame)
+        self.assertTrue(volumes.columns[0] == "date")
+        self.assertTrue(volumes.columns[1] == "volume")
