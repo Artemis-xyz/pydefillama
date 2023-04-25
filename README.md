@@ -55,7 +55,7 @@ import pydefillama as llama
 
 If you would like to contribute to this project, please open an issue or submit a PR.
 While we are open to all contributions, we would like to keep this project focused on data science workflows, which is why functions often return a pandas dataframe.
-If you would like to use this API for other purposes, please consider forking this repo.
+If you would like to use this module for other purposes, please consider forking this repo.
 
 ## Maintainers
 
