@@ -52,6 +52,9 @@ def fetch_protocol_tvl(protocol_slug: str) -> pd.DataFrame:
     df = pd.DataFrame(data["tvl"])
     df.columns = ["date", "tvl"]
     df = _convert_df_column_to_date(df, unit="s")
+    # get latest for each date
+    df = df.groupby("date").max().reset_index()
+    df = df.sort_values("date")
     return df
 
 

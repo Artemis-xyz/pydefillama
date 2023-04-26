@@ -20,7 +20,7 @@ class Test(unittest.TestCase):
         self.assertTrue(uniswap_v3_entry["parentProtocol"] == "parent#uniswap")
 
     def test_fetch_protocol_tvl(self):
-        df = llama.fetch_protocol_tvl("uniswap-v3")
+        df = llama.fetch_protocol_tvl("uniswap-v2")
         self.assertIsInstance(df, pd.DataFrame)
         self.assertTrue(df.columns[0] == "date")
         self.assertTrue(df.columns[1] == "tvl")
