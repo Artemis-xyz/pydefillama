@@ -4,8 +4,6 @@ import requests
 
 from .utils import FEE_TYPE
 
-# TODO: Add docstrings
-
 
 def _convert_df_column_to_date(
     df, date_column="date", format=None, unit=None
@@ -44,6 +42,21 @@ def fetch_all_protocols() -> list[dict]:
     ]
     return protocols_keys_kept
 
+# DefiLlama API sometimes has missing dates in their data
+# This function fills in the missing dates with the previous date's value
+def _forward_fill_missing_dates(df: pd.DataFrame, date_column: str) -> pd.DataFrame:
+    all_columns = df.columns
+    df = df.sort_values(date_column)
+    df = df.set_index(date_column)
+    min_date = df.index.min()
+    max_date = df.index.max()
+    date_range = pd.date_range(min_date, max_date)
+    df = df.reindex(date_range)
+    df = df.ffill().reset_index()
+    df.columns = all_columns
+    return df
+
+
 
 def fetch_protocol_tvl(protocol_slug: str) -> pd.DataFrame:
     url = f"https://api.llama.fi/protocol/{protocol_slug}"
@@ -54,7 +67,7 @@ def fetch_protocol_tvl(protocol_slug: str) -> pd.DataFrame:
     df = _convert_df_column_to_date(df, unit="s")
     # get latest for each date
     df = df.groupby("date").max().reset_index()
-    df = df.sort_values("date")
+    df = _forward_fill_missing_dates(df, "date")
     return df
 
 
